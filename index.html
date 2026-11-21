@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#173d70">
+<title>VISION ECONOMICS</title>
+<style>
+:root{font-family:Arial,sans-serif;color:#182538;background:#f4f7fb}
+*{box-sizing:border-box}body{margin:0}.wrap{max-width:720px;margin:auto;padding:16px 14px 90px}
+header{background:#173d70;color:white;padding:22px 18px;border-radius:18px}
+h1{font-size:22px;margin:0 0 5px}header p{margin:0;color:#dceaff;font-size:13px}
+h2{font-size:19px;margin:20px 0 10px}.muted{color:#65748b;font-size:13px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card,button,select,input,textarea{font:inherit}.card{background:white;border:1px solid #dce4ef;border-radius:13px;padding:14px}
+.tile{cursor:pointer;text-align:left;color:#172b45}.tile b{display:block;margin:7px 0 4px}
+button{border:0;border-radius:9px;padding:11px 14px;background:#245c9a;color:white;cursor:pointer}
+select,input,textarea{padding:10px;border:1px solid #ccd7e5;border-radius:9px;background:white;width:100%;margin:5px 0 12px}
+nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #dce4ef;display:flex;justify-content:space-around;padding:8px 2px;max-width:720px;margin:auto}
+nav button{background:transparent;color:#34465d;padding:8px 5px;font-size:12px}
+section{display:none}section.active{display:block}.topic{display:block;width:100%;text-align:left;margin:7px 0;background:white;color:#172b45;border:1px solid #dce4ef}
+.result{background:#eaf2fc;padding:12px;border-radius:10px;margin-top:10px}
+</style>
+</head>
+<body><div class="wrap">
+<header><h1>🎓 VISION ECONOMICS</h1><p>Cameroon Anglophone Curriculum</p><h2 style="color:white;margin:22px 0 5px">Learn Economics. Understand Life.</h2><p>Developed by BIME GODFREY</p></header>
+<div style="display:flex;gap:10px;align-items:center;margin-top:14px"><label for="level"><b>Class</b></label><select id="level" style="margin:0"><option>Form 3</option><option>Form 4</option><option>Form 5</option><option>Lower Sixth</option><option>Upper Sixth</option></select></div>
+<section id="home" class="active"><h2>Welcome to your classroom</h2><div class="cards">
+<button class="card tile" onclick="go('lessons')">📚<b>Digital Lessons</b><span class="muted">Explore topics</span></button>
+<button class="card tile" onclick="go('concepts')">📊<b>Economics Concepts</b><span class="muted">Learn with examples</span></button>
+<button class="card tile" onclick="go('practice')">📝<b>GCE Practice</b><span class="muted">Test your knowledge</span></button>
+<button class="card tile" onclick="go('teacher')">👨‍🏫<b>Teacher's Corner</b><span class="muted">Prepare lessons</span></button></div>
+<div class="card" style="margin-top:12px"><b>Featured lesson: Introduction to Economics</b><p class="muted">Explore scarcity, choice and opportunity cost using everyday situations in Cameroon.</p><button onclick="go('lessons')">Start learning</button></div></section>
+<section id="lessons"><h2>Digital Economics Lessons</h2><p class="muted">Select a topic to view a sample lesson outline.</p><div id="topics"></div><div id="lesson" class="card" hidden></div></section>
+<section id="concepts"><h2>Economics Concept Explorer</h2><div class="card"><b>Demand</b><p>Demand is the quantity of a commodity consumers are willing and able to buy at different prices over a given period, other things remaining constant.</p><p class="muted">Example: If the price of tomatoes falls in Bafoussam market, consumers may buy more tomatoes.</p><b>Illustrative demand schedule</b><p>Price (FCFA): 500, 400, 300<br>Quantity: 2, 4, 6</p><svg viewBox="0 0 300 180" width="100%" aria-label="Downward sloping demand curve"><path d="M30 10V145H285" stroke="#24364c" fill="none" stroke-width="2"/><path d="M55 30L245 125" stroke="#245c9a" stroke-width="3"/><text x="8" y="15" font-size="10">Price</text><text x="190" y="168" font-size="10">Quantity</text><text x="150" y="70" fill="#245c9a">D</text></svg><p class="muted">Illustrative figures only. The demand curve slopes downwards from left to right.</p></div></section>
+<section id="practice"><h2>GCE Economics Practice</h2><div class="card"><p><b>The fundamental economic problem arises because:</b></p><div id="opts"></div><button onclick="check()">Check answer</button><div id="feedback" class="result" hidden></div></div></section>
+<section id="teacher"><h2>Teacher's Corner</h2><div class="card"><label>Class</label><select id="tclass"><option>Form 3</option><option>Form 4</option><option>Form 5</option><option>Lower Sixth</option><option>Upper Sixth</option></select><label>Lesson topic</label><input id="ttopic" placeholder="e.g. Factors of production"><label>Learning objective</label><textarea id="objective" rows="3" placeholder="By the end of the lesson, learners should be able to..."></textarea><button onclick="outline()">Generate lesson outline</button><div id="output"></div></div></section>
+<section id="progress"><h2>My Progress</h2><div class="card"><b id="score">No quiz attempted yet</b><p class="muted">Complete practice questions to begin tracking your results.</p></div></section>
+</div><nav><button onclick="go('home')">⌂<br>Home</button><button onclick="go('lessons')">📚<br>Lessons</button><button onclick="go('concepts')">📊<br>Concepts</button><button onclick="go('practice')">📝<br>Practice</button><button onclick="go('progress')">🏆<br>Progress</button></nav>
+<script>
+const data={
+'Form 3':['Fundamental Notions of Economics','Scarcity and Choice','Opportunity Cost','Factors of Production','Production','Division of Labour','Economic Systems'],
+'Form 4':['Demand and Supply','Elasticity','Production and Costs','Market Structures','Population','Business Units'],
+'Form 5':['Money and Banking','Inflation','Public Finance and Taxation','International Trade','Distribution','Economic Growth and Development'],
+'Lower Sixth':['Nature and Scope of Economics','Consumer Behaviour','Theory of Demand','Theory of Supply','Production and Costs'],
+'Upper Sixth':['National Income','Economic Growth and Development','Public Finance','International Trade','Unemployment and Inflation','Economic Policy']};
+function go(id){document.querySelectorAll('section').forEach(s=>s.classList.toggle('active',s.id===id));}
+function render(){let c=document.getElementById('level').value;let box=document.getElementById('topics');box.innerHTML='';data[c].forEach(t=>{let b=document.createElement('button');b.className='topic';b.textContent=t+'  →';b.onclick=()=>lesson(t,c);box.appendChild(b)});}
+function lesson(t,c){let d=document.getElementById('lesson');d.hidden=false;d.innerHTML='<small>'+c+' • DIGITAL LESSON</small><h3></h3><b>Learning objectives</b><p>Learners should define the concept, explain its main features and apply it to everyday situations in Cameroon.</p><b>Problem situation</b><p>A trader in Bafoussam has limited resources but faces several needs and choices. How can Economics help the trader make decisions?</p><b>Lesson activities</b><ul><li>Discuss the meaning of the topic.</li><li>Identify important features and examples.</li><li>Apply the concept to a local situation.</li></ul><b>Revision question</b><p>Explain the importance of studying this topic, giving two practical examples.</p>';d.querySelector('h3').textContent=t;d.scrollIntoView({behavior:'smooth'});}
+document.getElementById('level').addEventListener('change',render);render();
+const options=['A. Human wants are limited','B. Resources are scarce and wants are unlimited','C. Goods are always free','D. Governments control all resources'];let chosen=-1;
+options.forEach((o,i)=>{let b=document.createElement('button');b.className='topic';b.textContent=o;b.onclick=()=>{chosen=i;document.querySelectorAll('#opts button').forEach((x,j)=>x.style.borderColor=j===i?'#245c9a':'#dce4ef')};document.getElementById('opts').appendChild(b)});
+function check(){let f=document.getElementById('feedback');f.hidden=false;if(chosen<0){f.textContent='Please select an answer.';return;}let ok=chosen===1;f.textContent=ok?'Correct! Scarcity means resources are limited relative to unlimited human wants.':'Not quite. Review scarcity and try again.';document.getElementById('score').textContent=ok?'Quiz score: 1/1 (100%)':'Quiz score: 0/1. Try again.';}
+function outline(){let t=document.getElementById('ttopic').value.trim();if(!t){document.getElementById('output').textContent='Please enter a topic.';return;}let o=document.getElementById('objective').value;let d=document.createElement('div');d.className='result';let h=document.createElement('b');h.textContent=t;let p=document.createElement('p');p.textContent=document.getElementById('tclass').value+' Economics';let q=document.createElement('p');q.textContent='Objective: '+(o||'Learners should define, explain and apply '+t+'.');let r=document.createElement('p');r.textContent='Suggested structure: Introduction → Problem situation → Explanation → Cameroon examples → Class activity → Evaluation → Revision.';d.append(h,p,q,r);document.getElementById('output').replaceChildren(d);}
+</script></body></html>
